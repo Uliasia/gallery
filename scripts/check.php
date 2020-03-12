@@ -21,5 +21,5 @@
 
     mail($email, $subject, $message, $headers);
 
-    header('Location: /contact.php')
+    header('Location: ../contact.php')
 ?>
