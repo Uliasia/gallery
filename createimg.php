@@ -7,14 +7,13 @@
   <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-  <?php require_once "blocks/header.php";
-  echo $host  = $_SERVER['HTTP_HOST'];
-  echo $uri   = rtrim(dirname($_SERVER['PHP_SELF']), '/\\');
+  <?php 
+    require_once "blocks/header.php";
   ?>
   
   <div class="conteiner cardholder">
     <h2>Добавление картинки</h2>
-    <form action="scripts/add.php" method="POST" enctype="multipart/form-data">
+    <form action="scripts/add" method="POST" enctype="multipart/form-data">
       <input type="text" name="filename" placeholder="Имя файла..">
       <input type="text" name="title" placeholder="Заголовок.."><br>
       <textarea name="description" placeholder="Описание.."></textarea><br>

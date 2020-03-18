@@ -6,6 +6,17 @@ body {
     padding: 5px 50px;
 }
 
+h2 {
+    padding-left: 10vw;
+}
+
+p {
+    text-align: justify;
+    white-space: pre-wrap;
+}
+
+/* ---------- HEADER ---------- */
+
 .header {
     display: flex;
     justify-content: space-between;
@@ -19,25 +30,54 @@ body {
     color: azure;
     font-size: 24px;
     text-align: center;
+    margin-top: auto;
+    margin-bottom: auto;
 }
 
 .menu {
-    display: flex;
-
-    color: cornsilk;
+    margin-top: auto;
+    margin-bottom: auto;
 }
 
 .menu_item {
-    margin-left: 10px;
+    margin-left: 30px;
+    text-decoration: none;
+    color: cornsilk;
 }
+
+.menu_item:hover {
+    color: coral;
+}
+
+.menu_item > button {
+    background-color: darkgray;
+    border: grey 1px solid;
+    border-radius: 35px;
+
+    color: black;
+}
+
+.menu_item > button:hover {
+    background-color: cornsilk;
+}
+
+/* ---------- MAIN ---------- */
 
 .cardholder {
     display: flex;
     flex-wrap: wrap;
+    width: 70%;
+
+    margin-left: auto;
+    margin-right: auto;
 }
 
 .card {
     margin-left: 15px;
+    padding: 0 10px;
+    text-decoration: none;
+    color: black;
+    border: lightgray 1.5px solid;
     
 }
 
@@ -49,9 +89,27 @@ body {
 
 .card_img {
     width: inherit;
-    /* width: 100%;
-    height: 235px;
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: cover; */
+}
+
+/* ---------- PAGINATION ---------- */
+
+.pagination {
+    padding: 10px 0;
+
+    text-align: center;
+}
+
+.pagination > a {
+    border: gray .5px solid;
+    padding: 3px 10px;
+    text-decoration: none;
+}
+
+.nav-link {
+    color: gray;
+}
+
+.nav-active {
+    color: black;
+}
 }

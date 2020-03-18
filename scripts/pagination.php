@@ -1,8 +1,9 @@
 <?php
   require_once 'functions.php';
+  require_once 'configDB.php';
 
-  $perpage = 12;
-  $count_img;
+  $perpage = 9;
+  $count_img = count_images($conn);
   $count_pages = ceil($count_img / $perpage);
   if(!$count_pages) $count_pages = 1;
 

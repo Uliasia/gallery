@@ -61,7 +61,7 @@
                 if (!move_uploaded_file($fileTempName, $fileDestination)) {
                   echo move_uploaded_file($fileTempName, $fileDestination);
                 } else {
-                  header("Location: http://$host/gallery/createimg.php?upload=success");
+                  header("Location: http://$host/gallery/createimg?upload=success");
                 }
 
                
