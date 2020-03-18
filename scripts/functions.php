@@ -1,24 +1,51 @@
 <?php
-  require_once 'scripts/configDB.php';
 
-  function get_images_db($gallery){
-    $sql = 'SELECT id, title, img, info FROM images';
-    $query = $pdo->query($sql);
-    $images = array();
-    while($row = $query->fetch(PDO::FETCH_OBJ)) {
-      $images[$row['id']] = $row;
+  function get_images_db ($conn) {
+
+    $sql = 'SELECT * FROM `images`';
+    $stmt = mysqli_stmt_init($conn);
+    if (!mysqli_stmt_prepare($stmt, $sql)) {
+      echo "SQL запрос неудался!";
+    } else {
+      mysqli_stmt_execute($stmt);
+      $res = mysqli_stmt_get_result($stmt);
+      $images = array();
+      while($row = mysqli_fetch_assoc($res)) {
+        $images[$row['id_images']] = $row;
+      }
+      return $images;
     }
-    return $images;
   }
 
-  function count_images($gallery) {
-    $sql = 'SELECT COUNT(*) FROM images';
-    $query = $pdo->query($sql);
-    $row = $query->fetch(PDO::FETCH_OBJ);
-    return $row[0];
+  function count_images ($conn) {
+
+    $sql = "SELECT COUNT(*) FROM `images`";
+    $stmt = mysqli_stmt_init($conn);
+    if (!mysqli_stmt_prepare($stmt, $sql)) {
+      echo "SQL запрос неудался!";
+    } else {
+      mysqli_stmt_execute($stmt);
+      $res = mysqli_stmt_get_result($stmt);
+      $row = mysqli_fetch_assoc($res);
+      return $row['COUNT(*)'];
+    }
   }
 
-  function pagination($page, $count_pages, $modrew=true) {
+  function get_image_by_id ($conn, $id) {
+
+    $sql = "SELECT * FROM `images` WHERE `id_images` = $id";
+    $stmt = mysqli_stmt_init($conn);
+    if (!mysqli_stmt_prepare($stmt, $sql)) {
+      echo "SQL запрос неудался!";
+    } else {
+      mysqli_stmt_execute($stmt);
+      $res = mysqli_stmt_get_result($stmt);
+      $row = mysqli_fetch_assoc($res);
+      return $row;
+    }
+  }
+
+  function pagination ($page, $count_pages, $modrew=false) {
     $back = NULL;
     $forward = NULL;
     $startpage = NULL;
@@ -29,7 +56,7 @@
     $page1right = NULL;
 
     $uri = "?";
-    if(!$modrev) {
+    if(!$modrew) {
       if( $_SERVER['QUERY_STRING']) {
         foreach ($_GET as $key => $value) {
           if($key != 'page') {
@@ -37,6 +64,67 @@
           }
         }
       }
+    } else {
+      $url = $_SERVER['REQUEST_URI'];
+      $url = explode("?", $url);
+      if (isset($url[1]) && $url[1] != '') {
+        $params = explode("&", $url[1]);
+        foreach ($params as $param) {
+          if (!preg_match("#page=#", $param)) {
+            $uri .= "{$param}&amp;";
+          }
+        }
+      }
     }
+
+    if ( $page > 1 ) {
+      $back = "<a class='nav-link' data_page='".($page - 1)."' href='{$uri}page=" .($page - 1). "'>&lt;</a>";
+    }
+
+    if ( $page < $count_pages ) {
+      $forward = "<a class='nav-link' data_page='".($page + 1)."' href='{$uri}page=" .($page + 1). "'>&gt;</a>";
+    }
+
+    if ( $page > 3 ) {
+      $back = "<a class='nav-link' data_page='".($page - 1)."' href='{$uri}page=" .($page - 1). "'>&lt;</a>";
+    }
+    
+    if ( $page > 1 ) {
+      $startpage = "<a class='nav-link' data_page='1' href='{$uri}page=1'>&laquo;</a>";
+    }
+    
+    if ( $page < ($count_pages - 2) ) {
+      $endpage = "<a class='nav-link' data_page='".($count_pages)."' href='{$uri}page=" .($count_pages). "'>&laquo;</a>";
+    }
+    
+    if ( $page - 2 > 0 ) {
+      $page2left = "<a class='nav-link' data_page='".($page - 2)."' href='{$uri}page=" .($page - 2). "'>" .($page - 2). "</a>";
+    }
+    
+    if ( $page - 1 > 0 ) {
+      $page1left = "<a class='nav-link' data_page='".($page - 1)."' href='{$uri}page=" .($page - 1). "'>" .($page - 1). "</a>";
+    }
+    
+    if ( $page + 2 <= $count_pages ) {
+      $page2right = "<a class='nav-link' data_page='".($page + 2)."' href='{$uri}page=" .($page + 2). "'>" .($page + 2). "</a>";
+    }
+    
+    if ( $page + 1 <= $count_pages ) {
+      $page1right = "<a class='nav-link' data_page='".($page + 1)."' href='{$uri}page=" .($page + 1). "'>" .($page + 1). "</a>";
+    }
+    
+    return $startpage.$back.$page2left.$page1left. "<a class='nav-active' >" .$page. "</a>" .$page1right.$page2right.$forward.$endpage;
+  }
+
+  function get_img_page () {
+    $uri = "?";
+    if( $_SERVER['QUERY_STRING']) {
+      foreach ($_GET as $key => $value) {
+        if($key != 'id') {
+          $uri .= "{$key}=$value&amp;";
+        }
+      }
+    }
+    return $uri;
   }
 ?> 

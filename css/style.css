@@ -64,7 +64,7 @@ p {
 /* ---------- MAIN ---------- */
 
 .cardholder {
-    display: flex;
+    display: flex; 
     flex-wrap: wrap;
     width: 70%;
 
@@ -78,7 +78,7 @@ p {
     text-decoration: none;
     color: black;
     border: lightgray 1.5px solid;
-    
+
 }
 
 .card_body {
@@ -112,4 +112,26 @@ p {
 .nav-active {
     color: black;
 }
+
+/* ---------- IMAGE ------------ */
+
+.unocard {
+    display: flex;
+    flex-direction: column;
+    border: gray 1.5px solid;
+    width: 80vw;
+
+    margin-left: auto;
+    margin-right: auto;
+
+}
+
+.unocard_img {
+    margin-left: auto;
+    margin-right: auto;
+    width: 90%;
+}
+
+.unocard  p {
+    margin: 5%;
 }

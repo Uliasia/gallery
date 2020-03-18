@@ -1,40 +1,45 @@
 <!DOCTYPE html>
 <html lang="ru">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Моя Галерея</title>
-  <link rel="stylesheet" href="css/style.css">
-</head>
-<body>
-  <?php require_once "blocks/header.php" ?>
-  
-  <div class="conteiner cardholder">
-    <h2>Все картинки</h2>
-    <?php 
-      include_once 'scripts/configDB.php';
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Моя Галерея</title>
+    <link rel="stylesheet" href="css/style.css">
+  </head>
+  <body>
+    <?php require_once "blocks/header.php" ?>
+    
+    <div class="conteiner">
+      <h2>Все картинки</h2>
+        <?php 
+          include_once 'scripts/configDB.php';
+          require_once 'scripts/pagination.php';
 
-      $sql = "SELECT * FROM images;";
-      $stmt = mysqli_stmt_init($conn);
-      if (!mysqli_stmt_prepare($stmt, $sql)) {
-        echo "SQL запрос неудался!";
-      } else {
-        mysqli_stmt_execute($stmt);
-        $res = mysqli_stmt_get_result($stmt);
-        while($row = mysqli_fetch_assoc($res)){
-          echo "<a href='#' class='card'>
-                  <div class='card_body'>
-                    <img  class='card_img' src='img/uploadedImg/".$row["imgFullName_images"]."' alt=''>
-                    <h3>".$row["title_images"]."</h3>
-                    <p>".$row['descrip_images']."</p>
-                  </div>
-                </a>";
-        }
-      }
-    ?>
-  </div>
-  
+          echo " <div class='cardholder'>";
 
-  <?php require_once "blocks/footer.php" ?>
-</body>
+          $res = array_merge(get_images_db($conn));
+
+          for($j = $start_pos; $j < $end_pos; $j++){
+            echo "<a href='image".get_img_page()."id=".$res[$j]['id_images']."' class='card'>
+                    <div class='card_body'>
+                      <h3>".$res[$j]["title_images"]."</h3>
+                      <img  class='card_img' src='img/uploadedImg/".$res[$j]["imgFullName_images"]."' alt=''>
+                      <p>".$res[$j]['descrip_images']."</p>
+                    </div>
+                  </a>";
+          }
+
+          echo "</div>";
+
+          if ($count_pages > 1) {
+            echo "<div class='pagination'>" .$pagination. "</div>";
+          }
+        ?>
+    </div>
+    
+
+    <?php require_once "blocks/footer.php" ?>
+    
+  </body>
+  <script src="js/script.js"></script>
 </html>
