@@ -2,6 +2,7 @@ AddHandler application/x-httpd-php .php .htm .html
 
 AddDefaultCharset UTF-8
 
+ErrorDocument 404 http://localhost/gallery/404
 
 RewriteEngine on
 
