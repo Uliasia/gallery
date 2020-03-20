@@ -9,9 +9,9 @@
   <body>
     <?php require_once "blocks/header.php" ?>
     
-    <div class="conteiner">
+    <div class="conteiner abc">
       <h2>Все картинки</h2>
-        <?php 
+         <?php 
           include_once 'scripts/configDB.php';
           require_once 'scripts/pagination.php';
 
@@ -41,5 +41,5 @@
     <?php require_once "blocks/footer.php" ?>
     
   </body>
-  <script src="js/script.js"></script>
+  <script src="scripts/script.js"></script>
 </html>

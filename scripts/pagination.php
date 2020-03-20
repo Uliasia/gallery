@@ -2,13 +2,13 @@
   require_once 'functions.php';
   require_once 'configDB.php';
 
-  $perpage = 9;
+  $perpage = 3;
   $count_img = count_images($conn);
   $count_pages = ceil($count_img / $perpage);
   if(!$count_pages) $count_pages = 1;
 
-  if(isset($_GET['page'])) {
-    $page = (int)$_GET['page'];
+  if(isset($_POST['JSON']['page'])) {
+    $page = (int)$_POST['JSON']['page'];
     if($page < 0) $page = 1;
   }else {
     $page = 1;
@@ -19,5 +19,5 @@
   $end_pos = $start_pos + $perpage;
   if($end_pos > $count_img) $end_pos = $count_img;
 
-  $pagination = pagination($page, $count_pages, $modrew = 1);
+  $pagination = pagination($page, $count_pages);
 ?>

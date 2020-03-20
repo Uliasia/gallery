@@ -45,7 +45,7 @@
     }
   }
 
-  function pagination ($page, $count_pages, $modrew=false) {
+  function pagination ($page, $count_pages) {
     $back = NULL;
     $forward = NULL;
     $startpage = NULL;
@@ -56,7 +56,7 @@
     $page1right = NULL;
 
     $uri = "?";
-    if(!$modrew) {
+  
       if( $_SERVER['QUERY_STRING']) {
         foreach ($_GET as $key => $value) {
           if($key != 'page') {
@@ -64,53 +64,42 @@
           }
         }
       }
-    } else {
-      $url = $_SERVER['REQUEST_URI'];
-      $url = explode("?", $url);
-      if (isset($url[1]) && $url[1] != '') {
-        $params = explode("&", $url[1]);
-        foreach ($params as $param) {
-          if (!preg_match("#page=#", $param)) {
-            $uri .= "{$param}&amp;";
-          }
-        }
-      }
-    }
+    
 
     if ( $page > 1 ) {
-      $back = "<a class='nav-link' data_page='".($page - 1)."' href='{$uri}page=" .($page - 1). "'>&lt;</a>";
+      $back = "<a class='nav-link' data-page='".($page - 1)."' href='{$uri}page=" .($page - 1). "'>&lt;</a>";
     }
 
     if ( $page < $count_pages ) {
-      $forward = "<a class='nav-link' data_page='".($page + 1)."' href='{$uri}page=" .($page + 1). "'>&gt;</a>";
+      $forward = "<a class='nav-link' data-page='".($page + 1)."' href='{$uri}page=" .($page + 1). "'>&gt;</a>";
     }
 
     if ( $page > 3 ) {
-      $back = "<a class='nav-link' data_page='".($page - 1)."' href='{$uri}page=" .($page - 1). "'>&lt;</a>";
+      $back = "<a class='nav-link' data-page='".($page - 1)."' href='{$uri}page=" .($page - 1). "'>&lt;</a>";
     }
     
-    if ( $page > 1 ) {
-      $startpage = "<a class='nav-link' data_page='1' href='{$uri}page=1'>&laquo;</a>";
+    if ( $page > 2 ) {
+      $startpage = "<a class='nav-link' data-page='1' href='{$uri}page=1'>&laquo;</a>";
     }
     
-    if ( $page < ($count_pages - 2) ) {
-      $endpage = "<a class='nav-link' data_page='".($count_pages)."' href='{$uri}page=" .($count_pages). "'>&laquo;</a>";
+    if ( $page < ($count_pages - 1) ) {
+      $endpage = "<a class='nav-link' data-page='".($count_pages)."' href='{$uri}page=" .($count_pages). "'>&raquo;</a>";
     }
     
     if ( $page - 2 > 0 ) {
-      $page2left = "<a class='nav-link' data_page='".($page - 2)."' href='{$uri}page=" .($page - 2). "'>" .($page - 2). "</a>";
+      $page2left = "<a class='nav-link' data-page='".($page - 2)."' href='{$uri}page=" .($page - 2). "'>" .($page - 2). "</a>";
     }
     
     if ( $page - 1 > 0 ) {
-      $page1left = "<a class='nav-link' data_page='".($page - 1)."' href='{$uri}page=" .($page - 1). "'>" .($page - 1). "</a>";
+      $page1left = "<a class='nav-link' data-page='".($page - 1)."' href='{$uri}page=" .($page - 1). "'>" .($page - 1). "</a>";
     }
     
     if ( $page + 2 <= $count_pages ) {
-      $page2right = "<a class='nav-link' data_page='".($page + 2)."' href='{$uri}page=" .($page + 2). "'>" .($page + 2). "</a>";
+      $page2right = "<a class='nav-link' data-page='".($page + 2)."' href='{$uri}page=" .($page + 2). "'>" .($page + 2). "</a>";
     }
     
     if ( $page + 1 <= $count_pages ) {
-      $page1right = "<a class='nav-link' data_page='".($page + 1)."' href='{$uri}page=" .($page + 1). "'>" .($page + 1). "</a>";
+      $page1right = "<a class='nav-link' data-page='".($page + 1)."' href='{$uri}page=" .($page + 1). "'>" .($page + 1). "</a>";
     }
     
     return $startpage.$back.$page2left.$page1left. "<a class='nav-active' >" .$page. "</a>" .$page1right.$page2right.$forward.$endpage;
