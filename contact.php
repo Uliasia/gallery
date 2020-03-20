@@ -9,8 +9,8 @@
 <body>
   <?php require_once "blocks/header.php" ?>
 
-  <div class="container">
-    <h3>Контактная форма</h3>
+  <div class="conteiner">
+    <h2>Контактная форма</h2>
    <form action="scripts/check.php" method="post">
       <input type="email" name="email" placeholder="Введите email"><br>
       <textarea name="message" placeholder="Введите сообщение"></textarea><br>

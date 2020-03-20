@@ -15,6 +15,7 @@ p {
     white-space: pre-wrap;
 }
 
+
 /* ---------- HEADER ---------- */
 
 .header {
@@ -97,6 +98,8 @@ p {
     padding: 10px 0;
 
     text-align: center;
+
+    animation-duration: 5s ;
 }
 
 .pagination > a {
@@ -129,9 +132,21 @@ p {
 .unocard_img {
     margin-left: auto;
     margin-right: auto;
-    width: 90%;
+    width: 70%;
 }
 
 .unocard  p {
     margin: 5%;
+}
+
+/* ---------- FORM ----------- */
+
+form {
+    display: flex;
+    flex-direction: column;
+    width: 300px;
+
+
+    margin-left: 10vw;
+    margin-right: auto;
 }

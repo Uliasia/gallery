@@ -11,10 +11,10 @@
     require_once "blocks/header.php";
   ?>
   
-  <div class="conteiner cardholder">
+  <div class="conteiner">
     <h2>Добавление картинки</h2>
     <form action="scripts/add" method="POST" enctype="multipart/form-data">
-      <input type="text" name="filename" placeholder="Имя файла..">
+      <input type="text" name="filename" placeholder="Имя файла.."><br>
       <input type="text" name="title" placeholder="Заголовок.."><br>
       <textarea name="description" placeholder="Описание.."></textarea><br>
       <input type="file" name="img"><br>
