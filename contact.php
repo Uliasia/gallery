@@ -11,7 +11,7 @@
 
   <div class="conteiner">
     <h2>Контактная форма</h2>
-   <form action="scripts/check.php" method="post">
+   <form action="scripts/check" method="post">
       <input type="email" name="email" placeholder="Введите email"><br>
       <textarea name="message" placeholder="Введите сообщение"></textarea><br>
       <button type="submit" name="send">Отправить</button>

@@ -1,6 +1,7 @@
 <?php
     $email = $_POST['email'];
     $message = $_POST['message'];
+    print_r($_POST);
     $error = '';
 
     if(trim($email) == ""){
@@ -21,5 +22,5 @@
 
     mail($email, $subject, $message, $headers);
 
-    header('Location: ../contact.php')
+    header('Location: ../contact?send=success')
 ?>
