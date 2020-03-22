@@ -1,8 +1,5 @@
 <?php
-  $host  = $_SERVER['HTTP_HOST'];
-  $uri   = rtrim(dirname($_SERVER['PHP_SELF']), '/\\');
-
-  require_once "configDB.php";
+  require_once __DIR__ ."/configDB.inc.php";
 
   $id = $_GET['id'];
 
@@ -10,5 +7,5 @@
   $query = $pdo->prepare($sql);
   $query->execute([$id]);
 
-  header("Location: http://$host/gallery/");
+  header("Location: /");
 ?>

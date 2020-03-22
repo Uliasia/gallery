@@ -4,26 +4,29 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Моя Галерея</title>
-    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="./css/style.css">
   </head>
   <body>
-    <?php require_once "blocks/header.php" ?>
+    <?php require_once __DIR__ ."/blocks/header.inc.php" ?>
     
     <div class="conteiner abc">
       <h2>Все картинки</h2>
          <?php 
-          include_once 'scripts/configDB.php';
-          require_once 'scripts/pagination.php';
+          require_once __DIR__ .'/scripts/configDB.inc.php';
+          require_once __DIR__ .'/scripts/pagination.inc.php';
+          $p = '';
+          print_r(__DIR__);
+          print_r($_SERVER['DOCUMENT_ROOT']);
 
           echo " <div class='cardholder'>";
 
           $res = array_merge(get_images_db($conn));
 
           for($j = $start_pos; $j < $end_pos; $j++){
-            echo "<a href='image".get_img_page()."id=".$res[$j]['id_images']."' class='card'>
+            echo "<a href='./image".get_img_page()."id=".$res[$j]['id_images']."' class='card'>
                     <div class='card_body'>
                       <h3>".$res[$j]["title_images"]."</h3>
-                      <img  class='card_img' src='img/uploadedImg/".$res[$j]["imgFullName_images"]."' alt=''>
+                      <img  class='card_img' src='./img/uploadedImg/".$res[$j]["imgFullName_images"]."' alt=''>
                       <p>".$res[$j]['descrip_images']."</p>
                     </div>
                   </a>";
@@ -38,7 +41,7 @@
     </div>
     
 
-    <?php require_once "blocks/footer.php" ?>
+    <?php require_once __DIR__ ."/blocks/footer.inc.php" ?>
     
   </body>
   <script src="scripts/script.js"></script>

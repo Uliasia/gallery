@@ -1,6 +1,6 @@
 <?php
-  include_once "configDB.php";
-  include_once "functions.php";
+  require_once __DIR__ . "/configDB.inc.php";
+  require_once __DIR__ . "/functions.inc.php";
 
   if ('application/json' == $_SERVER['CONTENT_TYPE']
       && 'POST' == $_SERVER['REQUEST_METHOD'])
@@ -11,7 +11,7 @@
       $_POST['JSON'] = & $_REQUEST['JSON'];
   }
 
-  include_once "pagination.php";
+  require_once __DIR__ ."/pagination.inc.php";
 
   $return = "<h2>Все картинки</h2>";
 

@@ -1,7 +1,4 @@
 <?php
-  $host  = $_SERVER['HTTP_HOST'];
-  $uri   = rtrim(dirname($_SERVER['PHP_SELF']), '/\\');
-  $relative_url = 'createimg.php';
 
   if(isset($_POST['upload'])) {
 
@@ -32,9 +29,9 @@
       if ($fileError === 0) {
         if ($fileSize < 2000000) {
           $imageFullName =  $newFileName . "." . uniqid('', true) . "." . $fileActualExt;
-          $fileDestination =  "../img/uploadedImg/" . $imageFullName;
+          $fileDestination =  __DIR__ . "/../img/uploadedImg/" . $imageFullName;
 
-          include_once "configDB.php";
+          include_once "configDB.inc.php";
 
           if (empty($imageTitle) || empty($imageDesc)) {
             header("Location: /?upload-empty");
@@ -61,7 +58,7 @@
                 if (!move_uploaded_file($fileTempName, $fileDestination)) {
                   echo move_uploaded_file($fileTempName, $fileDestination);
                 } else {
-                  header("Location: http://$host/gallery/createimg?upload=success");
+                  header("Location: ../createimg?upload=success");
                 }
 
                
@@ -73,7 +70,7 @@
           exit();
         }
       } else {
-        echo "Щшибка файла!";
+        echo "Ошибка файла!";
         exit();
       }
     } else {

@@ -1,6 +1,6 @@
 <?php
-  require_once 'functions.php';
-  require_once 'configDB.php';
+  require_once __DIR__ .'/functions.inc.php';
+  require_once __DIR__ .'/configDB.inc.php';
 
   $perpage = 3;
   $count_img = count_images($conn);

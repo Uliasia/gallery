@@ -1,4 +1,4 @@
-AddHandler application/x-httpd-php .php .htm .html
+AddHandler application/x-httpd-php .php .htm .html .inc
 
 AddDefaultCharset UTF-8
 

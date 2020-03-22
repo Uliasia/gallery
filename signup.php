@@ -10,8 +10,8 @@
   <?php require_once __DIR__ ."/blocks/header.inc.php" ?>
 
   <div class="conteiner">
-    <h2>Контактная форма</h2>
-   <form action="./scripts/check" method="post">
+    <h2>Регистрация</h2>
+   <form action="./scripts/l" method="post">
       <input type="email" name="email" placeholder="Введите email"><br>
       <textarea name="message" placeholder="Введите сообщение"></textarea><br>
       <button type="submit" name="send">Отправить</button>

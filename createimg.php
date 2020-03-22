@@ -4,16 +4,16 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Добавление изображения</title>
-  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="./css/style.css">
 </head>
 <body>
   <?php 
-    require_once "blocks/header.php";
+    require_once __DIR__ ."/blocks/header.inc.php";
   ?>
   
   <div class="conteiner">
     <h2>Добавление картинки</h2>
-    <form action="scripts/add" method="POST" enctype="multipart/form-data">
+    <form action="./scripts/add" method="POST" enctype="multipart/form-data">
       <input type="text" name="filename" placeholder="Имя файла.."><br>
       <input type="text" name="title" placeholder="Заголовок.."><br>
       <textarea name="description" placeholder="Описание.."></textarea><br>
@@ -22,6 +22,6 @@
     </form>
   </div>
 
-  <?php require_once "blocks/footer.php"?>
+  <?php require_once __DIR__ ."/blocks/footer.inc.php"?>
 </body>
 </html>
