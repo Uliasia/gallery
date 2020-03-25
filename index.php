@@ -9,6 +9,7 @@
   <body>
     <?php 
       require_once __DIR__ ."/blocks/header.inc.php";
+      require_once __DIR__ ."/scripts/redirect.inc.php";
     ?>
     
     <div class="conteiner abc">
@@ -16,9 +17,6 @@
          <?php 
           require_once __DIR__ .'/scripts/configDB.inc.php';
           require_once __DIR__ .'/scripts/pagination.inc.php';
-          $p = '';
-          print_r(__DIR__);
-          print_r($_SERVER['DOCUMENT_ROOT']);
 
           echo " <div class='cardholder'>";
 

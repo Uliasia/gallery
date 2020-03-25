@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <?php 
+    <?php
 				require_once __DIR__ .'/scripts/configDB.inc.php';
 				require_once __DIR__ .'/scripts/functions.inc.php';
 				
@@ -19,6 +19,7 @@
   <body>
     <?php
       require_once __DIR__ ."/blocks/header.inc.php";
+      require_once __DIR__ ."/scripts/redirect.inc.php";
     ?>
     
     <div class="conteiner">

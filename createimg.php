@@ -7,8 +7,9 @@
   <link rel="stylesheet" href="./css/style.css">
 </head>
 <body>
-  <?php 
+  <?php
     require_once __DIR__ ."/blocks/header.inc.php";
+    require_once __DIR__ ."/scripts/redirect.inc.php";
   ?>
   
   <div class="conteiner">
