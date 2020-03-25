@@ -11,7 +11,7 @@
       $res = mysqli_stmt_get_result($stmt);
       $images = array();
       while($row = mysqli_fetch_assoc($res)) {
-        $images[$row['id_images']] = $row;
+        $images[$row['image_id']] = $row;
       }
       return $images;
     }
@@ -33,11 +33,12 @@
 
   function get_image_by_id ($conn, $id) {
 
-    $sql = "SELECT * FROM `images` WHERE `id_images` = $id";
+    $sql = "SELECT * FROM `images` WHERE `image_id` = ?";
     $stmt = mysqli_stmt_init($conn);
     if (!mysqli_stmt_prepare($stmt, $sql)) {
       echo "SQL запрос неудался!";
     } else {
+      mysqli_stmt_bind_param($stmt, "s", $id);
       mysqli_stmt_execute($stmt);
       $res = mysqli_stmt_get_result($stmt);
       $row = mysqli_fetch_assoc($res);

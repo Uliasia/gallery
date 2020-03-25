@@ -25,58 +25,61 @@
 
     $allowed = array("jpg", "jpeg", "png");
 
-    if (in_array($fileActualExt, $allowed)) {
-      if ($fileError === 0) {
-        if ($fileSize < 2000000) {
+    if (!in_array($fileActualExt, $allowed)) {
+        header("Location: /?upload=filetype");
+        exit();
+    } else {
+      if (!($fileError === 0)) {
+        header("Location: ../createimg?upload=fileerror");
+        exit();
+      } else {
+        if ($fileSize > 2000000) {
+          header("Location: /?upload=filelarge");
+          exit();
+        } else {
           $imageFullName =  $newFileName . "." . uniqid('', true) . "." . $fileActualExt;
           $fileDestination =  __DIR__ . "/../img/uploadedImg/" . $imageFullName;
 
           include_once "configDB.inc.php";
 
           if (empty($imageTitle) || empty($imageDesc)) {
-            header("Location: /?upload-empty");
+            header("Location: ../createimg?upload=empty");
             exit();
           } else {
             $sql = "SELECT * FROM images;";
             $stmt = mysqli_stmt_init($conn);
             if (!mysqli_stmt_prepare($stmt, $sql)) {
-              echo "SQL запрос неудался!";
+              header("Location: ../createimg?upload=error");
+              exit();
             } else {
               mysqli_stmt_execute($stmt);
               $res = mysqli_stmt_get_result($stmt);
               $rewCount = mysqli_num_rows($res);
               $setImageOrder = $rewCount + 1;
 
-              $sql = "INSERT INTO images (title_images, descrip_images, imgFullName_images, order_images) VALUES (?, ?, ?, ?)";
+              $sql = "INSERT INTO images (image_title, image_descrip, image_fullName, image_order)
+                      VALUES (?, ?, ?, ?)";
               if (!mysqli_stmt_prepare($stmt, $sql)) {
-                echo "SQL запрос неудался!";
+                header("Location: ../createimg?upload=error");
+                exit();
               } else {
                 mysqli_stmt_bind_param($stmt, "ssss", $imageTitle, $imageDesc, $imageFullName, $setImageOrder);
                 mysqli_stmt_execute($stmt);
-
-                // $moved = move_uploaded_file($fileTempName, $fileDestination);
                 if (!move_uploaded_file($fileTempName, $fileDestination)) {
-                  echo move_uploaded_file($fileTempName, $fileDestination);
+                  header("Location: /?upload=error");
+                  exit();
                 } else {
                   header("Location: ../createimg?upload=success");
                 }
-
-               
               }  
             }
           }
-        } else {
-          echo "Файл слишком большой!";
-          exit();
         }
-      } else {
-        echo "Ошибка файла!";
-        exit();
-      }
-    } else {
-      echo "Нужно загрузить правильный тип файла!";
-      exit();
-    }
+      } 
+    } 
+  } else {
+    header("Location: ../createimg");
+    exit();
   }
 
   // $title = $_POST['title'];
@@ -89,5 +92,5 @@
   // $query = $pdo->prepare($sql);
   // $query->execute(['title'=>$title, 'img'=>$img, 'info'=>$info]);
 
-  // header("Location: http://$host/gallery/createimg.php?upload=success");
+  // 
 ?>

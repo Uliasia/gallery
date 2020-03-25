@@ -7,13 +7,18 @@
   <link rel="stylesheet" href="./css/style.css">
 </head>
 <body>
-  <?php require_once __DIR__ ."/blocks/header.inc.php" ?>
+  <?php 
+    require_once __DIR__ ."/blocks/header.inc.php";
+    require_once __DIR__ ."/scripts/redirect.inc.php";
+  ?>
 
   <div class="conteiner">
     <h2>Контактная форма</h2>
-   <form action="./scripts/check" method="post">
-      <input type="email" name="email" placeholder="Введите email"><br>
-      <textarea name="message" placeholder="Введите сообщение"></textarea><br>
+   <form action="./scripts/contactus" method="post">
+      <input type="text" name="name" placeholder="Имя"><br>
+      <input type="text" name="subject" placeholder="Тема"><br>
+      <input type="email" name="email" placeholder="Е-mail"><br>
+      <textarea name="message" placeholder="Введите сообщение.."></textarea><br>
       <button type="submit" name="send">Отправить</button>
    </form>
   </div>
