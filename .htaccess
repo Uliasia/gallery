@@ -6,6 +6,10 @@ ErrorDocument 404 http://localhost/gallery/404
 
 RewriteEngine on
 
+    RewriteCond %{REQUEST_FILENAME} !-d
+
+    RewriteRule ^([a-zA-Z]+\/[^.?]+)$ %{REQUEST_URI}.inc.php [L]
+
     RewriteRule ^([^.?]+)$ %{REQUEST_URI}.php [L]
 
     RewriteCond %{THE_REQUEST} "^[^ ]* .*?\.php[? ].*$"
