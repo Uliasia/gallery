@@ -3,12 +3,13 @@
 	if(isset($_POST['send'])) {
 
 		require_once __DIR__ ."/configDB.inc.php";
+        require_once __DIR__ ."/functions.inc.php";
 
-		$name = mysqli_real_escape_string($conn, $_POST['name']);
-		$surname = mysqli_real_escape_string($conn, $_POST['surname']);
-		$email = mysqli_real_escape_string($conn, $_POST['email']);
-		$uname = mysqli_real_escape_string($conn, $_POST['uname']);
-		$pwd = mysqli_real_escape_string($conn, $_POST['pwd']);
+		$name = check_entered($conn, $_POST['name']);
+		$surname = check_entered($conn, $_POST['surname']);
+		$email = check_entered($conn, $_POST['email']);
+		$uname = check_entered($conn, $_POST['uname']);
+		$pwd = check_entered($conn, $_POST['pwd']);
 
 		if(empty($name) || empty($surname) || empty($email) || empty($uname) || empty($pwd)) {
 			header("Location: ../signup?signup=empty");

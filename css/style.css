@@ -150,3 +150,39 @@ form {
     margin-left: 10vw;
     margin-right: auto;
 }
+
+/* -----------  ----------- */
+
+.system_page {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    -webkit-transform: translate(-50%, -50%);
+        -ms-transform: translate(-50%, -50%);
+            transform: translate(-50%, -50%);
+    width: 400px;
+    height: 450px;
+    margin-left: auto;
+    margin-right: auto;
+    display: flex;
+    text-align: center;
+    flex-direction: column;
+    background-color: rgb(48, 48, 48);
+}
+
+.system_page form {
+    width: 300px;
+    text-align: center;
+    margin-top: auto;
+    margin-bottom: auto;
+    margin-left: auto;
+    margin-right: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.system_page form  button {
+width: 160PX;
+background-color: green;
+}

@@ -18,6 +18,5 @@
 			<a href="/">home page</a>
 		</div>
 	</div>
-
 </body>
 </html>

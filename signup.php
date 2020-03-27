@@ -20,19 +20,19 @@
           echo '<input type="text" name="name" placeholder="Имя"><br>';
         }
         if(isset($_GET['surname'])) {
-          $surname = $_GET['name'];
+          $surname = $_GET['surname'];
           echo '<input type="text" name="surname" placeholder="Фамилия" value="'.$surname.'"><br>';
         } else {
           echo'<input type="text" name="surname" placeholder="Фамилия"><br>';
         }
         if(isset($_GET['email'])) {
-          $email = $_GET['name'];
+          $email = $_GET['email'];
           echo '<input type="email" name="email" placeholder="Е-mail" value="'.$email.'"><br>';
         } else {
           echo '<input type="email" name="email" placeholder="Е-mail"><br>';
         }
         if(isset($_GET['username'])) {
-          $username = $_GET['name'];
+          $username = $_GET['username'];
           echo '<input type="text" name="uname" placeholder="Логин" value="'.$username.'"><br>';
         } else {
           echo '<input type="text" name="uname" placeholder="Логин"><br>';

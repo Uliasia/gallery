@@ -1,0 +1,40 @@
+  body {
+    margin: 0;
+
+    background-color: #222;
+    vertical-align: middle;
+  }
+
+  .system_page {
+		position: absolute;
+    left: 50%;
+    top: 50%;
+    -webkit-transform: translate(-50%, -50%);
+        -ms-transform: translate(-50%, -50%);
+            transform: translate(-50%, -50%);
+    width: 400px;
+    height: 400px;
+    margin-left: auto;
+    margin-right: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+		background-color: honeydew;
+  }
+
+  form {
+		width: 30vw;
+		text-align: center;
+		margin-top: auto;
+		margin-bottom: auto;
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+  }
+
+  form  button {
+    width: 160PX;
+    background-color: green;
+  }
+  
+  

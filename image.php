@@ -28,7 +28,8 @@
 								<h2>".$res["image_title"]."</h2>
                 <img  class='unocard_img' src='./img/uploadedImg/".$res["image_fullName"]."' alt=''>
                 <p>".$res['image_descrip']."</p>
-							</div>";
+              </div>";
+              header("HTTP/1.0 ...", true, 404);
         ?>
     </div>
     

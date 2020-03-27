@@ -2,7 +2,7 @@
   require_once __DIR__ .'/functions.inc.php';
   require_once __DIR__ .'/configDB.inc.php';
 
-  $perpage = 3;
+  $perpage = 6;
   $count_img = count_images($conn);
   $count_pages = ceil($count_img / $perpage);
   if(!$count_pages) $count_pages = 1;
